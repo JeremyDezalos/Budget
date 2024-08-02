@@ -1,11 +1,15 @@
 package com.budget.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.budget.Entity.Compte;
 import com.budget.Service.CompteService;
 
 @RestController
@@ -16,12 +20,19 @@ public class CompteController {
 	
 	public CompteController() {
 	}
+	
 	@GetMapping("/getAll")
-	public void getAll() {
-		compteService.getAll();
+	public List<Compte> getAll() {
+		return compteService.getAll();
 	}
-	@GetMapping("/get/{id}")
-	public void get(@PathVariable("id") long compteId) {
-		compteService.get(compteId);
+	
+	@GetMapping("/get/{compteID}")
+	public Compte get(@PathVariable("compteID") long compteID) {
+		return compteService.get(compteID);
+	}
+	
+	@PostMapping(value = "/add")
+	public void addCompte(Compte compte) {
+		compteService.addCompte(compte);
 	}
 }

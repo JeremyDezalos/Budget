@@ -26,7 +26,13 @@ public class CompteService {
 	}
 	
 	public Compte get(long id){
-		//handle null cases
+		if(compteRepository.findById(id).isEmpty()) {
+			return null;
+		}
 		return compteRepository.findById(id).get();
+	}
+	
+	public void addCompte(Compte compte) {
+		compteRepository.save(compte);
 	}
 }
