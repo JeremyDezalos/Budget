@@ -1,4 +1,6 @@
-package com.budget.Entity;
+package com.budget.BudgetProgram.Transaction;
+
+import com.budget.BudgetProgram.Compte.Compte;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

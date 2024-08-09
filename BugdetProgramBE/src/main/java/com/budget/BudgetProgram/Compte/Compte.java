@@ -1,6 +1,8 @@
-package com.budget.Entity;
+package com.budget.BudgetProgram.Compte;
 
 import java.util.Set;
+
+import com.budget.BudgetProgram.Transaction.Transaction;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ public class Compte {
 	private String nomCompte;
 	private double montant;
 	
-    @OneToMany(mappedBy="cart")
+    @OneToMany(mappedBy="compte")
     private Set<Transaction> transactions;
 
 	protected Compte() {}

@@ -1,11 +1,9 @@
-package com.budget.Repository;
+package com.budget.BudgetProgram.Transaction;
 
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import com.budget.Entity.Transaction;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 	@Query(

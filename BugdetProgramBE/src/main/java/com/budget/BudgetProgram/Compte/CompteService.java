@@ -1,13 +1,10 @@
-package com.budget.Service;
+package com.budget.BudgetProgram.Compte;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.budget.Entity.Compte;
-import com.budget.Repository.CompteRepository;
 
 @Service
 public class CompteService {

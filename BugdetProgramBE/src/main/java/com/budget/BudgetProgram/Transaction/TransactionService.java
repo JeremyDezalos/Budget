@@ -1,13 +1,10 @@
-package com.budget.Service;
+package com.budget.BudgetProgram.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.budget.Entity.Transaction;
-import com.budget.Repository.TransactionRepository;
 
 @Service
 public class TransactionService {

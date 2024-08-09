@@ -1,4 +1,4 @@
-package com.budget.Controller;
+package com.budget.BudgetProgram.Compte;
 
 import java.util.List;
 
@@ -9,17 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.budget.Entity.Compte;
-import com.budget.Service.CompteService;
-
 @RestController
-@RequestMapping("/api/compte")
+@RequestMapping("/compte")
 public class CompteController {
 	@Autowired
 	private CompteService compteService;
 	
-	public CompteController() {
-	}
+	public CompteController() {	}
 	
 	@GetMapping("/getAll")
 	public List<Compte> getAll() {

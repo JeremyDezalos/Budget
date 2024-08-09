@@ -1,4 +1,4 @@
-package com.budget.Controller;
+package com.budget.BudgetProgram.Transaction;
 
 import java.util.List;
 
@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.budget.Entity.Transaction;
-import com.budget.Service.TransactionService;
-
 @RestController
+@RequestMapping("/transaction")
 public class TransactionController {
 
 	@Autowired
