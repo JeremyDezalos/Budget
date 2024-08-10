@@ -9,17 +9,17 @@ import { ApercuComponent } from './apercu/apercu.component';
 import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent,
-    ApercuComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatInputModule
-  ],
-  providers: [provideHttpClient()],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		NotFoundComponent,
+		ApercuComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		MatInputModule
+	],
+	providers: [provideHttpClient()],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

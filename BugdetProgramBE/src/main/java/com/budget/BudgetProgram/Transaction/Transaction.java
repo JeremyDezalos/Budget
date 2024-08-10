@@ -2,6 +2,7 @@ package com.budget.BudgetProgram.Transaction;
 
 import com.budget.BudgetProgram.Compte.Compte;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,13 +12,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Transaction")
+@Table(name = "Transactions")
 public class Transaction {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-  	private Long id;
+	@Column(name = "transactionid", nullable=false, unique=true)
+  	private Long transactionID;
+	
+	@Column(name = "libelle", nullable=false)
 	private String libelle;
+	
+	@Column(name = "ajout", nullable=false)
 	private boolean ajout;
+	
+	@Column(name = "montant", nullable=false)
 	private double montant;
 	
     @ManyToOne

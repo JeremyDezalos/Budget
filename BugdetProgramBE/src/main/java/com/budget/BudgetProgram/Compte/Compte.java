@@ -4,21 +4,30 @@ import java.util.Set;
 
 import com.budget.BudgetProgram.Transaction.Transaction;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;	
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;	
 
 @Entity
+@Getter
+@Setter
 @Table(name = "Compte")
 public class Compte {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-  	private Long id;
+	@Column(name = "compteid", nullable=false, unique=true)
+  	private Long compteID;
+	@Column(name = "nomutilisateur", nullable=false)
 	private String nomUtilisateur;
+	@Column(name = "nomcompte", nullable=false)
 	private String nomCompte;
+	@Column(name = "montant", nullable=false)
 	private double montant;
 	
     @OneToMany(mappedBy="compte")
@@ -26,10 +35,11 @@ public class Compte {
 
 	protected Compte() {}
 
-	public Compte(String nomUtilisateur, String nomCompte, int montant) {
+	public Compte(String nomUtilisateur, String nomCompte, int montant, Set<Transaction> transactions) {
 	    this.setNomUtilisateur(nomUtilisateur);
 	    this.setNomCompte(nomCompte);
 	    this.setMontant(montant);
+	    this.transactions = transactions;
 	}
 
 	public double getMontant() {

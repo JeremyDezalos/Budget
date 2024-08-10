@@ -1,6 +1,9 @@
+import { Transaction } from './transaction.model';
+
 export interface Compte {
-    id: number;
-    nomUtilisateur: string;
-    nomCompte: string;
+    compteid: number;
+    nomtutilisateur: string;
+    nomcompte: string;
     montant: number;
+	transactions: Transaction[]
 }

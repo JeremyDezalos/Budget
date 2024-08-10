@@ -19,7 +19,9 @@ public class CompteController {
 	
 	@GetMapping("/getAll")
 	public List<Compte> getAll() {
-		return compteService.getAll();
+		List<Compte> a = compteService.getAll();
+		//System.out.println(a.get(1).getMontant());
+		return a;
 	}
 	
 	@GetMapping("/get/{compteID}")

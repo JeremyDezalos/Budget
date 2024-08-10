@@ -11,7 +11,7 @@ export class CompteService {
 
 
   constructor(private http: HttpClient) { }
-  getComptes(): Observable<Object>{
-    return this.http.get(this.baseUrl+"/getAll");
+  getComptes(): Observable<Compte[]>{
+    return this.http.get<Compte[]>(this.baseUrl+"/getAll");
   }
 }
