@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ApercuComponent } from './apercu/apercu.component';
 import { provideHttpClient } from '@angular/common/http';
+import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
+import { XlsxReaderComponent } from './xlsx-reader/xlsx-reader.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		NotFoundComponent,
-		ApercuComponent
+		ApercuComponent,
+  		DynamicTableComponent,
+    XlsxReaderComponent
 	],
 	imports: [
 		BrowserModule,

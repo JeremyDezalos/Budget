@@ -12,11 +12,12 @@ export class ApercuComponent {
 	constructor(private compteService: CompteService){
 
 	}
-	data:Compte[] = [];
+	data:Compte[] = [{compteid:1, montant:30, nomCompte:"a", nomUtilisateur: "a", transactions:[]}];
 	getAll(){
 		this.compteService.getComptes().subscribe((compte: Compte[]) => {
 			this.data = compte
-			console.log(compte)
+			console.log(this.data)
 		})
 	}	
+
 }
