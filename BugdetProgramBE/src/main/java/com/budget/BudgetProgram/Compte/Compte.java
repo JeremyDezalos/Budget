@@ -41,7 +41,15 @@ public class Compte {
 	    this.setMontant(montant);
 	    this.transactions = transactions;
 	}
+	
+	public Long getCompteID() {
+		return compteID;
+	}
 
+	public void setCompteID(Long id) {
+		this.compteID = id;
+	}
+	
 	public double getMontant() {
 		return montant;
 	}

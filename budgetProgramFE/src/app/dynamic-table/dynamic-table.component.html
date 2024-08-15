@@ -1,3 +1,30 @@
-<p>
-    Today's item: {{dataSource[0].nomUtilisateur}}
-</p>
+<table mat-table [dataSource]="table" matSort class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="compteID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.compteID}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="nomUtilisateur">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Utilisateur </th>
+      <td mat-cell *matCellDef="let element"> {{element.nomUtilisateur}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="nomCompte">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Compte </th>
+      <td mat-cell *matCellDef="let element"> {{element.nomCompte}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="montant">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant </th>
+      <td mat-cell *matCellDef="let element"> {{element.montant}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;" (click)="click(row.compteID)"></tr>
+  </table>
+  

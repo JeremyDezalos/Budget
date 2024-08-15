@@ -1,7 +1,7 @@
 import { Transaction } from './transaction.model';
 
 export interface Compte {
-    compteid: number;
+    compteID: number;
     nomUtilisateur: string;
     nomCompte: string;
     montant: number;

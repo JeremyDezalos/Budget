@@ -9,6 +9,7 @@ import { ApercuComponent } from './apercu/apercu.component';
 import { provideHttpClient } from '@angular/common/http';
 import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 import { XlsxReaderComponent } from './xlsx-reader/xlsx-reader.component';
+import { MatTableModule } from '@angular/material/table' 
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,8 @@ import { XlsxReaderComponent } from './xlsx-reader/xlsx-reader.component';
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		MatInputModule
+		MatInputModule,
+		MatTableModule
 	],
 	providers: [provideHttpClient()],
 	bootstrap: [AppComponent]

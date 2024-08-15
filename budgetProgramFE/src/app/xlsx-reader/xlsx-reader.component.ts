@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Compte } from '../../models/compte.model';
 
 import * as XLSX from 'xlsx';
@@ -13,6 +13,7 @@ export class XlsxReaderComponent {
 	arrayBuffer:any;
 	file:any;
  	rawArray:any;
+	@Input() public selectedAccount: number = -1;
   	transactions: Transaction[] = []
 	incomingfile(event: any) 
 	  {
@@ -20,6 +21,14 @@ export class XlsxReaderComponent {
 	  }
 	
 	 Upload() {
+		if(this.file == null){
+			alert("Pas de fichier excel selectionné")
+			return
+		}
+		else if(this.selectedAccount == -1){
+			alert("Pas de compte selectionné")
+			return
+		}
 		let fileReader = new FileReader();
 		fileReader.onload = (e) => {
 			this.arrayBuffer = fileReader.result;
@@ -30,15 +39,20 @@ export class XlsxReaderComponent {
 			var workbook = XLSX.read(bstr, {type:"binary"});
 			var first_sheet_name = workbook.SheetNames[0];
 			var worksheet = workbook.Sheets[first_sheet_name];
-			this.rawArray = XLSX.utils.sheet_to_json(worksheet,{raw:true})
+			this.rawArray = XLSX.utils.sheet_to_json(worksheet,{raw:true, header: ['date', 'libelle', 'debit', 'credit', 'montant']})
 			if(this.rawArray.length <= 6){console.log("Pas d'opérations")}
 			else {
-				for(let i = 6; i < this.rawArray.length; ++i){
-					//TODO: date transaction, id manquant
-					//this.transactions.push({})
+				let transactions: Transaction[] = []
+				for(let i = 7; i < this.rawArray.length; ++i){
+					let rawtransaction = this.rawArray[i]
+					let ajout: boolean = rawtransaction.debit == ""
+					let transaction: Transaction = {transactionid: null, libelle: rawtransaction.libelle,ajout: ajout, montant: rawtransaction.montant, compteid: this.selectedAccount}
+					transactions.push(transaction)
 				}
+				console.log(transactions)
+				//TODO push to the DB
 			}
-			console.log(this.rawArray);
+			
 		}
 		fileReader.readAsArrayBuffer(this.file);
 	 }

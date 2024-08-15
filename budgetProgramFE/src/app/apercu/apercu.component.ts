@@ -9,15 +9,20 @@ import { Compte } from '../../models/compte.model';
 	styleUrl: './apercu.component.scss'
 })
 export class ApercuComponent {
+	selectedAccount: number = -1
 	constructor(private compteService: CompteService){
 
 	}
-	data:Compte[] = [{compteid:1, montant:30, nomCompte:"a", nomUtilisateur: "a", transactions:[]}];
+	comptes:Compte[] = [{compteID:1, montant:30, nomCompte:"a", nomUtilisateur: "a", transactions:[]}];
 	getAll(){
 		this.compteService.getComptes().subscribe((compte: Compte[]) => {
-			this.data = compte
-			console.log(this.data)
+			this.comptes = compte
+			console.log(compte)
 		})
 	}	
 
+	selectAccount(compteID: number) {
+		console.log(compteID)
+		this.selectedAccount = compteID
+	}
 }

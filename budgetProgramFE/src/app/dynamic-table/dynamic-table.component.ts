@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy } from '@angular/compiler';
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild, Output, EventEmitter  } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,10 +13,19 @@ import { Compte } from '../../models/compte.model';
 })
 export class DynamicTableComponent implements OnInit  {
 	@Input() public dataSource: Compte[] = [];
-
+	@Output() selectIDEvent = new EventEmitter<number>();
+	table = new MatTableDataSource();
+	columns: string[] = ['compteID', 'nomUtilisateur', 'nomCompte', 'montant'];
 	constructor() {}
 
 	ngOnInit(): void {
+		this.table.data = this.dataSource
+	}
+	ngOnChanges() {
+		this.table.data = this.dataSource
 	}
 
+	click(compteID: number){
+		this.selectIDEvent.emit(compteID);
+	}
 }

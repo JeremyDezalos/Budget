@@ -1,5 +1,5 @@
 export interface Transaction {
-    transactionid: number;
+    transactionid: number | null;
     libelle: string;
     ajout: boolean;
     montant: number;
