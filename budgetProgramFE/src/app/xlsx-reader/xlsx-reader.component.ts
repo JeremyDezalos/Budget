@@ -3,6 +3,7 @@ import { Compte } from '../../models/compte.model';
 
 import * as XLSX from 'xlsx';
 import { Transaction } from '../../models/transaction.model';
+import { TransactionService } from '../../services/compte/transaction.service';
 
 @Component({
   selector: 'app-xlsx-reader',
@@ -15,6 +16,9 @@ export class XlsxReaderComponent {
  	rawArray:any;
 	@Input() public selectedAccount: number = -1;
   	transactions: Transaction[] = []
+	constructor(public transactionService: TransactionService){
+
+	}
 	incomingfile(event: any) 
 	  {
 	  this.file= event.target.files[0]; 
@@ -39,18 +43,27 @@ export class XlsxReaderComponent {
 			var workbook = XLSX.read(bstr, {type:"binary"});
 			var first_sheet_name = workbook.SheetNames[0];
 			var worksheet = workbook.Sheets[first_sheet_name];
-			this.rawArray = XLSX.utils.sheet_to_json(worksheet,{raw:true, header: ['date', 'libelle', 'debit', 'credit', 'montant']})
+			this.rawArray = XLSX.utils.sheet_to_json(worksheet,{raw:true, header: ['date', 'libelle', 'debit', 'credit']})
 			if(this.rawArray.length <= 6){console.log("Pas d'opérations")}
 			else {
 				let transactions: Transaction[] = []
 				for(let i = 7; i < this.rawArray.length; ++i){
 					let rawtransaction = this.rawArray[i]
+					console.log(rawtransaction)
 					let ajout: boolean = rawtransaction.debit == ""
-					let transaction: Transaction = {transactionid: null, libelle: rawtransaction.libelle,ajout: ajout, montant: rawtransaction.montant, compteid: this.selectedAccount}
+					let montant = rawtransaction.debit
+					if(ajout){
+						montant = rawtransaction.credit
+					}
+					let transaction: Transaction = {transactionid: null, libelle: rawtransaction.libelle,ajout: ajout, montant: montant, compteid: this.selectedAccount}
 					transactions.push(transaction)
 				}
 				console.log(transactions)
-				//TODO push to the DB
+				this.transactionService.addTransaction(transactions).subscribe({
+					error: (error: any) => {
+						console.error('Erreur lors du upload ', error);
+					}}
+				)
 			}
 			
 		}

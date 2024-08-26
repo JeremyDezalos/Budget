@@ -14,6 +14,7 @@ import { Compte } from '../../models/compte.model';
 export class DynamicTableComponent implements OnInit  {
 	@Input() public dataSource: Compte[] = [];
 	@Output() selectIDEvent = new EventEmitter<number>();
+	selectedCompteID: number = 0
 	table = new MatTableDataSource();
 	columns: string[] = ['compteID', 'nomUtilisateur', 'nomCompte', 'montant'];
 	constructor() {}
@@ -24,8 +25,9 @@ export class DynamicTableComponent implements OnInit  {
 	ngOnChanges() {
 		this.table.data = this.dataSource
 	}
-
+	
 	click(compteID: number){
+		this.selectedCompteID = compteID
 		this.selectIDEvent.emit(compteID);
 	}
 }

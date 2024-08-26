@@ -1,6 +1,7 @@
 package com.budget.BudgetProgram.Transaction;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class TransactionService {
 		return transactionRepository.findById(id).get();
 	}
 	
-	public void addTransaction(Transaction transaction) {
-		transactionRepository.save(transaction);
+	public void addTransactions(Transaction transactions[]) {
+		transactionRepository.saveAll(Arrays.asList(transactions));
 	}
 }

@@ -1,7 +1,9 @@
 <p>Vous etes riche</p>
-<button (click)="getAll()">Click</button>
-<app-xlsx-reader [selectedAccount]="selectedAccount"></app-xlsx-reader>
+<button (click)="getAll()">Lister les comptes</button>
+<br/>
+<app-xlsx-reader [selectedAccount]="selectedAccount" [hidden]="selectedAccount < 1"></app-xlsx-reader>
+<br/>
 <app-dynamic-table [dataSource]="comptes" (selectIDEvent)="selectAccount($event)"></app-dynamic-table>
-
-
-
+<br/>
+<button (click)="openDialog()">Creer compte</button>
+<button (click)="openAccount()">Connexion</button>

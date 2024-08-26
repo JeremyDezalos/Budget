@@ -9,7 +9,12 @@ import { ApercuComponent } from './apercu/apercu.component';
 import { provideHttpClient } from '@angular/common/http';
 import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 import { XlsxReaderComponent } from './xlsx-reader/xlsx-reader.component';
-import { MatTableModule } from '@angular/material/table' 
+import { MatTableModule } from '@angular/material/table';
+import { CreateAccountDialogComponent } from './create-account-dialog/create-account-dialog.component' 
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { AccountViewComponent } from './account-view/account-view.component';
 
 @NgModule({
 	declarations: [
@@ -17,15 +22,20 @@ import { MatTableModule } from '@angular/material/table'
 		NotFoundComponent,
 		ApercuComponent,
   		DynamicTableComponent,
-    XlsxReaderComponent
+    	XlsxReaderComponent,
+     CreateAccountDialogComponent,
+     AccountViewComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		MatInputModule,
-		MatTableModule
+		MatTableModule,
+		MatDialogModule,
+		FormsModule,
+        ReactiveFormsModule
 	],
-	providers: [provideHttpClient()],
+	providers: [provideHttpClient(), provideAnimations()],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

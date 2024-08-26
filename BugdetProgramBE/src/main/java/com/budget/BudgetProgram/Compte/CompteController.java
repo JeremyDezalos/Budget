@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +20,7 @@ public class CompteController {
 	
 	@GetMapping("/getAll")
 	public List<Compte> getAll() {
-		List<Compte> a = compteService.getAll();
-		return a;
+		return compteService.getAll();
 	}
 	
 	@GetMapping("/get/{compteID}")
@@ -29,7 +29,7 @@ public class CompteController {
 	}
 	
 	@PostMapping(value = "/add")
-	public void addCompte(Compte compte) {
+	public void addCompte(@RequestBody Compte compte) {
 		compteService.addCompte(compte);
 	}
 }

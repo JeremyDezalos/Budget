@@ -3,12 +3,15 @@ package com.budget.BudgetProgram.Compte;
 import java.util.Set;
 
 import com.budget.BudgetProgram.Transaction.Transaction;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -20,8 +23,8 @@ import lombok.Setter;
 @Table(name = "Compte")
 public class Compte {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "compteid", nullable=false, unique=true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "compteID", nullable=false, unique=true)
   	private Long compteID;
 	@Column(name = "nomutilisateur", nullable=false)
 	private String nomUtilisateur;
@@ -30,7 +33,8 @@ public class Compte {
 	@Column(name = "montant", nullable=false)
 	private double montant;
 	
-    @OneToMany(mappedBy="compte")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "compteID") 
     private Set<Transaction> transactions;
 
 	protected Compte() {}
@@ -80,6 +84,10 @@ public class Compte {
 
 	public void setTransactions(Set<Transaction> transactions) {
 		this.transactions = transactions;
+	}
+	
+	public String toString() {
+		return nomCompte + " "+ nomUtilisateur +" "+ montant;
 	}
 
 }
